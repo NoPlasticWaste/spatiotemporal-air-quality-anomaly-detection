@@ -24,54 +24,70 @@ Main files:
 
 For data acquisition and storage instructions, see data/README.md.
 
-Repository Structure
+## Repository Structure
 
+```
 crea-anomaly-detection/
 ├── data/
-├── notebooks/
-├── src/
-├── config/
-├── reports/
-├── figures/
+│   ├── raw/                # Raw CSV files from CREA
+│   ├── processed/          # Cleaned & merged data
+│   └── README.md
+├── notebooks/              # Jupyter notebooks
+├── src/                    # Python scripts (utils.py, etc.)
+├── config/                 # Configuration files
+├── reports/                # Analysis reports
+├── figures/                # Visualization outputs
 ├── requirements.txt
 └── README.md
+```
 
-Environment Setup
+## Environment Setup
 
-1. Clone the Repository
+### 1. Clone the Repository
 
+```bash
 git clone https://github.com/endarlani/crea-anomaly-detection.git
 cd crea-anomaly-detection
+```
 
-2. Create a Virtual Environment
+### 2. Create a Virtual Environment
 
-python -m venv venv
-source venv/bin/activate
+```bash
+conda create -n crea python=3.12
+conda activate crea
+```
 
-3. Install Dependencies
+### 3. Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-4. Prepare the Data
+### 4. Prepare the Data
 
-Download and place the required datasets in the data/ directory.
+Place the required datasets in the `data/raw/` directory:
+- `anomaly_sample_measurements.csv`
+- `anomaly_sample_locations.csv`
 
-Refer to data/README.md for detailed instructions.
+Refer to `data/README.md` for detailed instructions.
 
-5. Launch Jupyter Notebook
+### 5. Launch Jupyter Notebook
 
+```bash
 jupyter notebook
+```
 
-Analysis Workflow
+## Analysis Workflow
 
 The project follows a notebook-based analytical pipeline:
 
-Notebook	Description
-01_data_preparation_EDA	Data cleaning, validation, and exploratory analysis
-02_baseline_zscore	Baseline anomaly detection using Z-score methods
-03_isolation_forest	Machine learning anomaly detection using Isolation Forest
-04_spatial_analysis	Geographic analysis of pollution events
-05_china_timeslices	Temporal analysis of pollution patterns in China
+| Notebook | Description |
+|---|---|
+| `01_EDA_data_preparation_and_cleaning` | Data cleaning, validation, and exploratory analysis |
+| `02_TSAD_spatial_analysis` | Spatial anomaly detection using TSAD method (ADF framework) |
+| `03_TSAD_china_all_timeslices` | TSAD applied across all time slices for China stations |
+| `04_decompose_anomaly_china` | Temporal anomaly detection via seasonal decomposition (statsmodels) |
+| `05_multimetrics_anomaly_china` | Multi-method detection: Z-Score, IQR, and Isolation Forest |
 
 Key Skills Demonstrated
 
