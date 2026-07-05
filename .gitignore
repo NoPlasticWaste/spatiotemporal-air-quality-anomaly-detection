@@ -9,9 +9,11 @@ __pycache__/
 *.pyc
 *.pyo
 .ipynb_checkpoints/
+.DS_Store
 
 # Environment
 .env
 venv/
 .conda/
 *.egg-info/
+
