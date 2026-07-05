@@ -1,24 +1,50 @@
-analysis:
-  radius_km:
-    default: 50
-    # Akan diupdate setelah EDA E.6 selesai:
-    china: null
-    india: null
-    germany: null
-    usa: null
+meta:
+  project: "crea-anomaly-detection"
+  config_version: "2.0"
+  notebook: "01_data_preparation_cleaning_and_EDA"
+  random_seed: 42  
 
-thresholds:
-  pm25_extreme_flat: 200      # DEPRECATED — pakai percentile
-  use_percentile: true
-  percentile_extreme: 99
-
+# ── Data Cleaning ───────────────────────────────────
 cleaning:
-  sentinel_values: [999, 999.9, 999.99, 9999]
+  sentinel_values: [999, 999.9, 999.99, 9999, -999, -9999]
   min_lat: -90
   max_lat: 90
   min_lon: -180
   max_lon: 180
+  null_island_deg: 0.001
+  expected_countries: ["China", "Germany", "India", "USA"]
 
+# ── EDA (Part E) ────────────────────────────────────────────────────
+eda:
+  outage_hours: 72
+  missing_attention_pct: 30
+  extreme_review_threshold: 500
+  implausible_threshold: 1000
+
+# ── DERIVASI PARAMETER (E.8) — 
+derivation:
+  extreme_percentile: 99            
+  extreme_flat_DEPRECATED: null     
+  who_annual_ugm3: 5
+  who_24h_ugm3: 15
+
+# ── FILTER & SPLIT (Part F) ─────────────────────────────────────────
+filter:
+  min_completeness_pct: 50
+
+# ── ANALISIS SPASIAL (E.6) ────────────────────────────────────────────
+spatial:
+
+  min_neighbors: 3
+  detectable_target_pct: 80
+  radius_km:
+    default: 50                     
+    China: null
+    Germany: null
+    India: null
+    USA: null
+
+# ── TSAD (for NB02–NB05) ──────────────────────────────────────────
 tsad:
   zscore_window_days: 30
   isolation_forest_contamination: 0.05
