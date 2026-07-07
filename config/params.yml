@@ -4,6 +4,17 @@ meta:
   notebook: "01_data_preparation_cleaning_and_EDA"
   random_seed: 42  
 
+paths:
+  raw_dir: "../data/raw"
+  processed_dir: "../data/processed"
+
+# ── Style warna grafik konsisten di seluruh notebook ───────────────────────────────────
+colors_map:
+  China:   "#F5A623"
+  Germany: "#378ADD"
+  India:   "#E24B4A"
+  USA:     "#1D9E75"
+
 # ── Data Cleaning ───────────────────────────────────
 cleaning:
   sentinel_values: [999, 999.9, 999.99, 9999, -999, -9999]
