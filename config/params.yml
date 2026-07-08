@@ -35,7 +35,6 @@ eda:
 # ── DERIVASI PARAMETER (E.8) — 
 derivation:
   extreme_percentile: 99            
-  extreme_flat_DEPRECATED: null     
   who_annual_ugm3: 5
   who_24h_ugm3: 15
 
@@ -59,3 +58,6 @@ spatial:
 tsad:
   zscore_window_days: 30
   isolation_forest_contamination: 0.05
+  # Divalidasi empiris di NB02 (uji sensitivitas exceedance P99, ambang 1.5×–10×);
+  # 0.05 konsisten dgn proporsi stasiun anomali pada definisi ketat.
+  # Lihat parameter_derivation.json untuk provenance.
