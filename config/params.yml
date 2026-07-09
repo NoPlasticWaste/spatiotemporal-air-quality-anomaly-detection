@@ -1,21 +1,25 @@
+# ══════════════════════════════════════════════════════════════════════
+# params.yml — SINGLE SOURCE OF TRUTH for all analysis parameters
+# Notebooks do NOT hardcode numbers found here.
+# ══════════════════════════════════════════════════════════════════════
+
 meta:
   project: "crea-anomaly-detection"
-  config_version: "2.0"
-  notebook: "01_data_preparation_cleaning_and_EDA"
-  random_seed: 42  
+  config_version: "2.1"
+  random_seed: 42
 
 paths:
   raw_dir: "../data/raw"
   processed_dir: "../data/processed"
 
-# ── Style graph color ───────────────────────────────────
+# ── Per-country colour palette (consistent across all plots, all notebooks) ──
 colors_map:
   China:   "#F5A623"
   Germany: "#378ADD"
   India:   "#E24B4A"
   USA:     "#1D9E75"
 
-# ── Data Cleaning ───────────────────────────────────
+# ── Data cleaning ──────────────────────────────────────────────
 cleaning:
   sentinel_values: [999, 999.9, 999.99, 9999, -999, -9999]
   min_lat: -90
@@ -25,39 +29,46 @@ cleaning:
   null_island_deg: 0.001
   expected_countries: ["China", "Germany", "India", "USA"]
 
-# ── EDA ────────────────────────────────────────────────────
+# ── EDA ─────────────────────────────────────────────────────────
 eda:
   outage_hours: 72
   missing_attention_pct: 30
   extreme_review_threshold: 500
   implausible_threshold: 1000
+  # "Very low value" threshold (µg/m³) — indicates a dead/frozen sensor
+  very_low_threshold: 2
 
-# ── DERIVASI PARAMETER (E.8) — 
+# ── Parameter derivation ────────────────────────────────────────
 derivation:
-  extreme_percentile: 99            
-  who_annual_ugm3: 5
-  who_24h_ugm3: 15
+  extreme_percentile: 99            # per-country P99 (not a flat 200)
+  who_annual_ugm3: 5                # WHO 2021 annual mean guideline
+  who_24h_ugm3: 15                  # WHO 2021 24-hour guideline
 
-# ── FILTER & SPLIT  ─────────────────────────────────────────
+# ── Filter & split ─────────────────────────────────────
 filter:
   min_completeness_pct: 50
 
-# ── ANALISIS SPASIAL ────────────────────────────────────────────
+# ── Spatial analysis ─────────────────────────────────────────
 spatial:
-
   min_neighbors: 3
   detectable_target_pct: 80
   radius_km:
-    default: 50                     
+    default: 50                     # fallback
     China: null
     Germany: null
     India: null
     USA: null
 
-# ── TSAD ──────────────────────────────────────────
+# ── Anomaly detection methods ───────────────────────────────────
 tsad:
-  zscore_window_days: 30
+  # Isolation Forest
+  # Empirically validated in NB2 (P99 exceedance sensitivity test, 1.5x-10x thresholds);
+  # 0.05 is consistent with the proportion of anomalous stations under a strict definition.
+  # See parameter_derivation.json for provenance.
   isolation_forest_contamination: 0.05
-  # Divalidasi empiris di NB02 (uji sensitivitas exceedance P99, ambang 1.5×–10×);
-  # 0.05 konsisten dgn proporsi stasiun anomali pada definisi ketat.
-  # Lihat parameter_derivation.json untuk provenance.
+  # Spatial Z-score baseline (separate Z-score notebook)
+  zscore_window_days: 30
+  # |Z| threshold above which a station is considered suspicious.
+  # 3.0 = common convention (~99.7% of data within ±3σ for a normal distribution);
+  # NEEDS to be validated/derived from data once the Z-score notebook is built.
+  zscore_suspicion_threshold: 3.0
