@@ -53,11 +53,11 @@ spatial:
   min_neighbors: 3
   detectable_target_pct: 80
   radius_km:
-    default: 50                     # fallback
-    China: null
-    Germany: null
-    India: null
-    USA: null
+    default: 50                     # fallback when a country is not listed
+    China: 50                       # NN median 4.0km; d=50 → 89.1% detectable
+    Germany: 50                     # dense network; d=50 is sufficient
+    India: 100                      # more spread out; d=100 needed for coverage
+    USA: 150                        # most spread out; d=150 for >=80% detectable
 
 # ── Anomaly detection methods ───────────────────────────────────
 tsad:
@@ -72,3 +72,23 @@ tsad:
   # 3.0 = common convention (~99.7% of data within ±3σ for a normal distribution);
   # NEEDS to be validated/derived from data once the Z-score notebook is built.
   zscore_suspicion_threshold: 3.0
+
+# ── BENFORD ──────────────────────────────────────────────────
+benford:
+  min_obs: 100            # minimum values per station for a stable MAD (Nigrini 2012)
+  mad_nonconform: 0.015   # MAD nonconformity threshold (first-digit, Nigrini 2012)
+  flag_sd_threshold: 2.0  # flag a station if its Benford score is > 2 SD above the country mean
+
+# ── LOF ──────────────────────────────────────────────────
+lof:
+  n_neighbors: 20         # number of local neighbors in feature space (Breunig et al. 2000)
+
+# ── FROZEN VALUES ────────────────────────────────────────
+frozen:
+  min_run_length: 6       # number of consecutive identical observations considered suspicious
+
+# ── SL/SH ─────────────────────────────────────────────────
+slsh:
+  tukey_r: 1.5            # Tukey test constant (Chen et al. 2018)
+  phi_systematic: 0.333  # systematic-behavior threshold (1/3, Chen 2018)
+  phi_severe: 0.667      # severe-malfunction threshold (2/3, Chen 2018)
