@@ -59,7 +59,7 @@ def apply_figure_style() -> None:
     plt.rcParams.update(FIGURE_STYLE)
 
 
-def spreadsheet_style(frame: pd.DataFrame) -> pd.io.formats.style.Styler:
+def table_style(frame: pd.DataFrame) -> pd.io.formats.style.Styler:
     """Return a display-only DataFrame with the shared spreadsheet-style layout."""
     display_frame = (
         frame.reset_index()
@@ -73,6 +73,6 @@ def display_spreadsheet(*objects: object, **kwargs: object) -> None:
     """Display DataFrames in the shared layout; pass other objects through unchanged."""
     for object_ in objects:
         if isinstance(object_, pd.DataFrame):
-            _display(spreadsheet_style(object_), **kwargs)
+            _display(table_style(object_), **kwargs)
         else:
             _display(object_, **kwargs)
