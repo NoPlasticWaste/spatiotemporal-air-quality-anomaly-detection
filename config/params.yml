@@ -68,9 +68,6 @@ tsad:
   isolation_forest_contamination: 0.05
   # Spatial Z-score baseline (separate Z-score notebook)
   zscore_window_days: 30
-  # |Z| threshold above which a station is considered suspicious.
-  # 3.0 = common convention (~99.7% of data within ±3σ for a normal distribution);
-  # NEEDS to be validated/derived from data once the Z-score notebook is built.
   zscore_suspicion_threshold: 3.5
 
 # ── BENFORD ──────────────────────────────────────────────────
