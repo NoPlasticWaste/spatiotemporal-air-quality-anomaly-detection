@@ -71,7 +71,7 @@ tsad:
   # |Z| threshold above which a station is considered suspicious.
   # 3.0 = common convention (~99.7% of data within ±3σ for a normal distribution);
   # NEEDS to be validated/derived from data once the Z-score notebook is built.
-  zscore_suspicion_threshold: 3.0
+  zscore_suspicion_threshold: 3.5
 
 # ── BENFORD ──────────────────────────────────────────────────
 benford:
