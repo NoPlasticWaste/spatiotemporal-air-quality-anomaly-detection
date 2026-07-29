@@ -65,6 +65,7 @@ tsad:
   # Empirically validated in NB2 (P99 exceedance sensitivity test, 1.5x-10x thresholds);
   # 0.05 is consistent with the proportion of anomalous stations under a strict definition.
   # See parameter_derivation.json for provenance.
+  isolation_forest_min_stations: 20
   isolation_forest_contamination: 0.05
   # Spatial Z-score baseline (separate Z-score notebook)
   zscore_window_days: 30
@@ -89,3 +90,7 @@ slsh:
   tukey_r: 1.5            # Tukey test constant (Chen et al. 2018)
   phi_systematic: 0.333  # systematic-behavior threshold (1/3, Chen 2018)
   phi_severe: 0.667      # severe-malfunction threshold (2/3, Chen 2018)
+station_features:
+  detection: ['median_value', 'iqr_value', 'val_range', 'pct_missing', 'pct_extreme', 'autocorr_lag1']
+  diagnostic: ['pct_very_low', 'mean_value', 'n_obs']
+  min_obs_for_profile: 5
