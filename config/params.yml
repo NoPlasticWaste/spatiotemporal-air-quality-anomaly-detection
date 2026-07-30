@@ -69,6 +69,8 @@ tsad:
   isolation_forest_contamination: 0.05
   # Spatial Z-score baseline (separate Z-score notebook)
   zscore_window_days: 30
+  tsad_flag_rate: 0.3
+  tsad_min_slices: 100
   zscore_suspicion_threshold: 3.5
 
 # ── BENFORD ──────────────────────────────────────────────────
