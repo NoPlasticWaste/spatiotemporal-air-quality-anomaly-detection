@@ -96,3 +96,7 @@ station_features:
   detection: ['median_value', 'iqr_value', 'val_range', 'pct_missing', 'pct_extreme', 'autocorr_lag1']
   diagnostic: ['pct_very_low', 'mean_value', 'n_obs']
   min_obs_for_profile: 5
+
+autoencoder:
+  pca_variance_threshold: 0.8
+  bottleneck_dim: 3
