@@ -101,3 +101,11 @@ station_features:
 autoencoder:
   pca_variance_threshold: 0.8
   bottleneck_dim: 3
+
+meteorology:
+  station_flag_rate: 0.05
+  distance_decay_km: 25.0
+  wind_alignment_power: 1.0
+  min_wind_weight: 0.05
+  calm_wind_threshold_ms: 0.5
+  max_neighbours: 20
