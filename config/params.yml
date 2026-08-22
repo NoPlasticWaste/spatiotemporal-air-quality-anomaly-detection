@@ -11,6 +11,7 @@ meta:
 paths:
   raw_dir: "../data/raw"
   processed_dir: "../data/processed"
+  gfed5_dir: "../data/raw/GEFD5"
 
 # ── Per-country colour palette (consistent across all plots, all notebooks) ──
 colors_map:
