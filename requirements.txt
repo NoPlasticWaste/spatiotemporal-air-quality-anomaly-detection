@@ -7,3 +7,4 @@ scipy>=1.11.0
 geopy>=2.3.0
 jupyter>=1.0.0
 ipykernel>=6.0.0
+reverse_geocoder>=1.5.1
