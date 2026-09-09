@@ -1,10 +1,27 @@
+# ─── Data manipulation & computation ───────────────────────────
 pandas>=2.0.0
 numpy>=1.24.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-scikit-learn>=1.3.0
 scipy>=1.11.0
-geopy>=2.3.0
+pyyaml>=6.0                    # reads config/params.yml
+
+# ─── Machine learning & anomaly detection ──────────────────────
+scikit-learn>=1.3.0            # IsolationForest, LOF, DBSCAN, StandardScaler
+shap>=0.42.0                   # SHAP attribution (NB04, NB07, NB11)
+
+# ─── Visualisation ─────────────────────────────────────────────
+matplotlib>=3.7.0
+
+# ─── Geospatial & location ─────────────────────────────────────
+reverse_geocoder>=1.5.1        # city/province name lookup from coordinates (NB01)
+
+# ─── Atmospheric data acquisition & reading ────────────────────
+xarray>=2023.6.0               # NetCDF reading (ERA5, GFED5, MERRA-2)
+netCDF4>=1.6.0                 # classic NetCDF backend
+h5netcdf>=1.3.0                # NetCDF4/HDF5 backend -- required for MERRA-2
+h5py>=3.9.0                    # h5netcdf dependency
+earthaccess>=0.9.0             # NASA Earthdata download (MERRA-2 scripts)
+
+# ─── Jupyter & environment ─────────────────────────────────────
 jupyter>=1.0.0
 ipykernel>=6.0.0
-reverse_geocoder>=1.5.1
+nbformat>=5.9.0                # notebook validation
