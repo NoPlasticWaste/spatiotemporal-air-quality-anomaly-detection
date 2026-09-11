@@ -19,8 +19,8 @@ import xarray as xr
 # ══════════════════════════════════════════════════════════════════
 EXTERNAL_DRIVE = Path("/Volumes/NO NAME")
 MERRA2_DIR = EXTERNAL_DRIVE / "gfed5_era5_data" / "merra2_dust_raw"
-OUTPUT_PATH = Path("../data/processed/dust_hourly.csv")
-STATIONS_PATH = Path("../data/processed/NB01_station_locations.csv")
+OUTPUT_PATH = Path("../../data/processed/dust_hourly.csv")
+STATIONS_PATH = Path("../../data/processed/NB01_station_locations.csv")
 VARIABLE = "DUSMASS25"
 KG_TO_UG = 1e9   # kg/m3 -> ug/m3
 COUNTRIES = ["China", "Germany", "India", "USA"]
